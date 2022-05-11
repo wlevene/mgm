@@ -18,6 +18,15 @@ type DateFields struct {
 	UpdatedAt time.Time `json:"updated_at" bson:"updated_at"`
 }
 
+type DeleteField struct {
+	Deleted bool `json:"deleted" bson:"deleted"`
+}
+
+type VersionFeild struct {
+	Version     int `json:"version" bson:"version"`
+	LastVersion int `json:"last_version" bson:"last_version"`
+}
+
 // PrepareID method prepares the ID value to be used for filtering
 // e.g convert hex-string ID value to bson.ObjectId
 func (f *IDField) PrepareID(id interface{}) (interface{}, error) {
@@ -57,4 +66,8 @@ func (f *DateFields) Creating() error {
 func (f *DateFields) Saving() error {
 	f.UpdatedAt = time.Now().UTC()
 	return nil
+}
+
+func (f *DeleteField) SetDeleted(deleted bool) {
+	f.Deleted = deleted
 }

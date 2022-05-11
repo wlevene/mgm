@@ -24,12 +24,16 @@ type Model interface {
 
 	GetID() interface{}
 	SetID(id interface{})
+
+	SetDeleted(bool)
 }
 
 // DefaultModel struct contains a model's default fields.
 type DefaultModel struct {
-	IDField    `bson:",inline"`
-	DateFields `bson:",inline"`
+	IDField      `bson:",inline"`
+	DateFields   `bson:",inline"`
+	VersionFeild `bson:",inline"`
+	DeleteField  `bson:",inline"`
 }
 
 // Creating function calls the inner fields' defined hooks

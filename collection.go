@@ -73,7 +73,9 @@ func (coll *Collection) UpdateWithCtx(ctx context.Context, model Model, opts ...
 // To perform additional operations when deleting a model
 // you should use hooks rather than overriding this method.
 func (coll *Collection) Delete(model Model) error {
-	return del(ctx(), coll, model)
+	model.SetDeleted(true)
+	return coll.Update(model, nil)
+	// return del(ctx(), coll, model)
 }
 
 // DeleteWithCtx method deletes a model (doc) from a collection using the specified context.

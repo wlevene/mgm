@@ -1,10 +1,11 @@
 package mgm_test
 
 import (
-	"github.com/wlevene/mgm/v3/internal/util"
-	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"testing"
+
+	"github.com/stretchr/testify/require"
+	"github.com/wlevene/mgm/v3/internal/util"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func TestPrepareInvalidId(t *testing.T) {
@@ -16,6 +17,17 @@ func TestPrepareInvalidId(t *testing.T) {
 
 func TestPrepareId(t *testing.T) {
 	d := &Doc{}
+
+	hexId := "5df7fb2b1fff9ee374b6bd2a"
+	val, err := d.PrepareID(hexId)
+	id, _ := primitive.ObjectIDFromHex(hexId)
+	require.Equal(t, val.(primitive.ObjectID), id)
+	util.AssertErrIsNil(t, err)
+}
+
+func TestDefaultDelete(t *testing.T) {
+	d := &Doc{}
+	d.LastVersion = 1
 
 	hexId := "5df7fb2b1fff9ee374b6bd2a"
 	val, err := d.PrepareID(hexId)
