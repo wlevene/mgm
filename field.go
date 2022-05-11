@@ -24,8 +24,8 @@ type DeleteField struct {
 }
 
 type VersionFeild struct {
-	Version     int `json:"version" bson:"version"`
-	LastVersion int `json:"last_version" bson:"last_version"`
+	Version     int64 `json:"version" bson:"version"`
+	LastVersion int64 `json:"last_version" bson:"last_version"`
 }
 
 // PrepareID method prepares the ID value to be used for filtering
