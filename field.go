@@ -73,5 +73,7 @@ func (f *DeleteField) SetDeleted(deleted bool) {
 	f.Deleted = deleted
 	if deleted {
 		f.DeletedAt = time.Now().UTC()
+	} else {
+		f.DeletedAt = time.Time{}
 	}
 }
