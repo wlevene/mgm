@@ -1,8 +1,9 @@
 package crud
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestCrud(t *testing.T) {

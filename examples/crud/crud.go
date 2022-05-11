@@ -16,5 +16,6 @@ func crud() error {
 		return err
 	}
 
+	return nil
 	return booksColl.Delete(book)
 }
