@@ -1,12 +1,13 @@
 package builder_test
 
 import (
-	"github.com/kamva/mgm/v3/builder"
-	"github.com/kamva/mgm/v3/field"
-	"github.com/kamva/mgm/v3/operator"
-	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/bson"
 	"testing"
+
+	"github.com/stretchr/testify/require"
+	"github.com/wlevene/mgm/v3/builder"
+	"github.com/wlevene/mgm/v3/field"
+	"github.com/wlevene/mgm/v3/operator"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 type TestLookupData struct {

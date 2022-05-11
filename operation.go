@@ -2,7 +2,8 @@ package mgm
 
 import (
 	"context"
-	"github.com/kamva/mgm/v3/field"
+
+	"github.com/wlevene/mgm/v3/field"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

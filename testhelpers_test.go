@@ -1,11 +1,12 @@
 package mgm_test
 
 import (
-	"github.com/kamva/mgm/v3"
-	"github.com/kamva/mgm/v3/internal/util"
+	"testing"
+
+	"github.com/wlevene/mgm/v3"
+	"github.com/wlevene/mgm/v3/internal/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"testing"
 )
 
 func setupDefConnection() {
