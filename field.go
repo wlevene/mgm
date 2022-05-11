@@ -19,7 +19,8 @@ type DateFields struct {
 }
 
 type DeleteField struct {
-	Deleted bool `json:"deleted" bson:"deleted"`
+	Deleted   bool      `json:"deleted" bson:"deleted"`
+	DeletedAt time.Time `json:"deleted_at" bson:"deleted_at"`
 }
 
 type VersionFeild struct {
@@ -70,4 +71,7 @@ func (f *DateFields) Saving() error {
 
 func (f *DeleteField) SetDeleted(deleted bool) {
 	f.Deleted = deleted
+	if deleted {
+		f.DeletedAt = time.Now().UTC()
+	}
 }
