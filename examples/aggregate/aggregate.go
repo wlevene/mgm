@@ -1,18 +1,26 @@
 package aggregate
 
 import (
+	"fmt"
+
 	"github.com/wlevene/mgm/v3"
 	"github.com/wlevene/mgm/v3/builder"
 	"github.com/wlevene/mgm/v3/field"
+	"github.com/wlevene/mgm/v3/operator"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 func seed() {
+
+	fmt.Println("seeding data...")
 	author := newAuthor("Mehran")
 	_ = mgm.Coll(author).Create(author)
 
 	book := newBook("Test", 124, author.ID)
 	_ = mgm.Coll(book).Create(book)
+
+	book1 := newBook("Test1", 124, author.ID)
+	_ = mgm.Coll(book1).Create(book1)
 
 }
 
@@ -31,6 +39,7 @@ func lookup() error {
 
 	pipeline := bson.A{
 		builder.S(builder.Lookup(authorColl.Name(), "author_id", field.ID, "author")),
+		bson.M{operator.Project: bson.M{"name": "Test1"}},
 	}
 
 	cur, err := mgm.Coll(&book{}).Aggregate(mgm.Ctx(), pipeline)
@@ -49,7 +58,7 @@ func lookup() error {
 		}
 
 		// do something with result....
-		//fmt.Printf("%+v\n", result)
+		fmt.Printf("%+v\n", result)
 	}
 
 	return nil
